@@ -1,4 +1,6 @@
 import { CardDashboard } from "@/app/ui/CardDashboard";
+import { TableDemo } from "@/app/ui/Table";
+
 import React from "react";
 
 export default function Dashboard() {
@@ -9,6 +11,9 @@ export default function Dashboard() {
         <CardDashboard />
         <CardDashboard />
         <CardDashboard />
+      </div>
+      <div className="py-3">
+      <TableDemo />
       </div>
     </>
   );
