@@ -16,7 +16,7 @@ export const CardDashboard = () => {
   return (
     <Card className="w-full my-4 p-6">
       <CardContent className="p-0 flex justify-between">
-        <p className="font-semibold text-sm">Card Content</p>
+        <p className="font-semibold text-sm">Keuntungan</p>
         <p><TbCurrencyDollar /></p>
       </CardContent>
       <CardHeader className="pt-3 px-0 pb-0">
