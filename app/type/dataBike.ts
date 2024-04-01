@@ -1,4 +1,5 @@
 export interface DataBike {
+  _id: Number,
   capitalPrice: Number;
   category: String;
   createdAt: String;
