@@ -6,7 +6,7 @@ interface PostDataSellsProps {
 }
 
 export const postDataSells = ({onSuccess}: PostDataSellsProps) => {
-  const api = "http://localhost:5000/sells/";
+  const api = "http://localhost:5000/sell/";
   return useMutation({
     mutationFn: async (body) => {
       const response = await axios.post(api, body)

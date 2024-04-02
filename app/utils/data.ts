@@ -20,3 +20,26 @@ export const NavLink = [
         link: "/input"
     },
 ]
+
+export const SelectOptionCategory = [
+    {
+        id: 1,
+        value: "Yamaha"
+    },
+    {
+        id: 2,
+        value: "Honda"
+    },
+    {
+        id: 3,
+        value: "Suzuki"
+    },
+    {
+        id: 4,
+        value: "Kawasaki"
+    },
+    {
+        id: 5,
+        value: "Vespa"
+    },
+]
