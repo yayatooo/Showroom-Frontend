@@ -13,12 +13,11 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { Field, useFormik } from "formik";
-import { postDataSells } from "@/app/service/postDataSells";
-import fetchSellsBike from "@/app/service/getDataSells";
+import { useFormik } from "formik";
 import axios from "axios";
 import { SelectOptionCategory } from "@/app/utils/data";
 import { toast, Toaster } from "sonner";
+import { postDataSells } from "@/app/service/postDataSells";
 
 interface FormValues {
   capitalPrice: number;
@@ -42,7 +41,6 @@ export default function InputBike() {
   const formik = useFormik({
     initialValues,
     onSubmit: async () => {
-     
       try {
         await mutate();
         toast.success("Motor Berhasil ditambah");
@@ -52,8 +50,16 @@ export default function InputBike() {
       }
     },
   });
-  
 
+  // const { mutate } = useMutation({
+  //   mutationFn: async () => {
+  //     postDataSells({
+  //       onSuccess: () => {
+  //         console.log("data Berhasil");
+  //       },
+  //     });
+  //   },
+  // });
   const { mutate } = useMutation({
     mutationFn: async () => {
       const { policeNumber, categoryBike, name, frameNumber } = formik.values;
@@ -73,7 +79,7 @@ export default function InputBike() {
     },
   });
 
-  console.log(mutate);
+  // console.log(mutate);
 
   const handleChange = (event: any) => {
     formik.setFieldValue(event.target.name, event.target.value);
@@ -105,10 +111,7 @@ export default function InputBike() {
             <SelectGroup>
               <SelectLabel>Merk</SelectLabel>
               {SelectOptionCategory.map((item) => (
-                <SelectItem
-                  value={item.value}
-                  key={item.id}
-                >
+                <SelectItem value={item.value} key={item.id}>
                   {item.value}
                 </SelectItem>
               ))}
