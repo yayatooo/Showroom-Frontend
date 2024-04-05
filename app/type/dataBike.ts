@@ -1,10 +1,11 @@
 export interface DataBike {
-  _id: Number,
-  capitalPrice: Number;
-  category: String;
-  createdAt: String;
-  frameNumber: String;
-  name: String;
-  policeNumber: String;
-  price: Number;
+  _id: string
+  capitalPrice: number; 
+  category: string; 
+  createdAt: string; 
+  frameNumber: string;
+  name: string; 
+  policeNumber: string; 
+  price: number;
 }
+

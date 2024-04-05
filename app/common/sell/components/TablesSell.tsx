@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React from "react";
 import {
   Table,
@@ -10,20 +10,27 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { useQuery } from "@tanstack/react-query";
-import fetchSellsBike from "@/app/service/getDataSells";
 import { DataBike } from "@/app/type/dataBike";
+import { useFetchProducts } from "@/app/service/useFetchSells";
+import { toast, Toaster } from "sonner";
+import { useDeleteSell } from "@/app/service/useDeleteSells";
+import { DeleteAction } from "./DeleteAction";
 
 export default function TablesSell() {
-  const { isLoading, isError, data } = useQuery({
-    queryFn: () => fetchSellsBike(),
-    queryKey: ["sells"],
+  const {
+    data,
+    isError,
+    isLoading,
+    refetch: refetchData,
+  } = useFetchProducts({
+    onError: (error) => {
+      toast.error("Motor Gagal dimuat", error);
+    },
   });
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isError) return <div>Error: {isError}</div>;
 
-  console.log(data);
 
   return (
     <Table>
@@ -39,16 +46,17 @@ export default function TablesSell() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((item: DataBike, index: any) => {
+        {data?.data.map((item: DataBike, index: number) => {
           return (
             <TableRow key={index}>
+              <Toaster richColors />
               <TableCell className="font-medium">{item.policeNumber}</TableCell>
               <TableCell>Yamaha</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.frameNumber}</TableCell>
               <TableCell>{item.price.toString()}</TableCell>
               <TableCell className="flex gap-3 justify-end">
-                <Button className="bg-red-600 hover:bg-red-800">Delete</Button>
+              <DeleteAction sellId={item._id} onSuccess={() => refetchData()} />
                 <Button className="bg-yellow-500 hover:bg-yellow-700">
                   Edit
                 </Button>

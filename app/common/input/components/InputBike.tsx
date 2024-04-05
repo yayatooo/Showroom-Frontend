@@ -17,7 +17,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { SelectOptionCategory } from "@/app/utils/data";
 import { toast, Toaster } from "sonner";
-import { postDataSells } from "@/app/service/postDataSells";
+// import { postDataSells } from "@/app/service/postDataSells";
 
 interface FormValues {
   capitalPrice: number;
@@ -51,15 +51,6 @@ export default function InputBike() {
     },
   });
 
-  // const { mutate } = useMutation({
-  //   mutationFn: async () => {
-  //     postDataSells({
-  //       onSuccess: () => {
-  //         console.log("data Berhasil");
-  //       },
-  //     });
-  //   },
-  // });
   const { mutate } = useMutation({
     mutationFn: async () => {
       const { policeNumber, categoryBike, name, frameNumber } = formik.values;
