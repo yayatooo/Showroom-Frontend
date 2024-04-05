@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import {
   Table,
@@ -15,6 +15,7 @@ import { useFetchProducts } from "@/app/service/useFetchSells";
 import { toast, Toaster } from "sonner";
 import { useDeleteSell } from "@/app/service/useDeleteSells";
 import { DeleteAction } from "./DeleteAction";
+import { SoldAction } from "./SoldAction";
 
 export default function TablesSell() {
   const {
@@ -30,7 +31,6 @@ export default function TablesSell() {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
-
 
   return (
     <Table>
@@ -56,13 +56,14 @@ export default function TablesSell() {
               <TableCell>{item.frameNumber}</TableCell>
               <TableCell>{item.price.toString()}</TableCell>
               <TableCell className="flex gap-3 justify-end">
-              <DeleteAction sellId={item._id} onSuccess={() => refetchData()} />
+                <DeleteAction
+                  sellId={item._id}
+                  onSuccess={() => refetchData()}
+                />
                 <Button className="bg-yellow-500 hover:bg-yellow-700">
                   Edit
                 </Button>
-                <Button className="bg-green-600 hover:bg-green-800">
-                  Sold
-                </Button>
+                <SoldAction soldId={item._id} onSuccess={() => refetchData()} />
               </TableCell>
             </TableRow>
           );

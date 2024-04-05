@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { SelectOptionCategory } from "@/app/utils/data";
 import { toast, Toaster } from "sonner";
+import { useRouter } from "next/navigation";
 // import { postDataSells } from "@/app/service/postDataSells";
 
 interface FormValues {
@@ -51,6 +52,12 @@ export default function InputBike() {
     },
   });
 
+  const router = useRouter()
+  const handleBack = (e: any) => {
+    e.preventDefault()
+    router.push("/sell")
+  }
+
   const { mutate } = useMutation({
     mutationFn: async () => {
       const { policeNumber, categoryBike, name, frameNumber } = formik.values;
@@ -70,7 +77,6 @@ export default function InputBike() {
     },
   });
 
-  // console.log(mutate);
 
   const handleChange = (event: any) => {
     formik.setFieldValue(event.target.name, event.target.value);
@@ -149,8 +155,7 @@ export default function InputBike() {
           <Button className="bg-blue-600 hover:bg-blue-800" type="submit">
             Add
           </Button>
-          <Button className="bg-red-600 hover:bg-red-800">
-            <Toaster richColors position="top-center" />
+          <Button className="bg-red-600 hover:bg-red-800" onClick={handleBack}>
             Back
           </Button>
         </div>
