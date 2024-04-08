@@ -13,9 +13,9 @@ import { Button } from "@/components/ui/button";
 import { DataBike } from "@/app/type/dataBike";
 import { useFetchProducts } from "@/app/service/useFetchSells";
 import { toast, Toaster } from "sonner";
-import { useDeleteSell } from "@/app/service/useDeleteSells";
 import { DeleteAction } from "./DeleteAction";
 import { SoldAction } from "./SoldAction";
+import Link from "next/link";
 
 export default function TablesSell() {
   const {
@@ -31,6 +31,12 @@ export default function TablesSell() {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
+
+  // const router = useRouter();
+
+  // const handleEdit = (id: string) => {
+  //   router.push(`/sell/${id}`);
+  // };
 
   return (
     <Table>
@@ -60,9 +66,11 @@ export default function TablesSell() {
                   sellId={item._id}
                   onSuccess={() => refetchData()}
                 />
-                <Button className="bg-yellow-500 hover:bg-yellow-700">
-                  Edit
-                </Button>
+                <Link href={`/sell/${item._id}`}>
+                  <Button className="bg-yellow-500 hover:bg-yellow-700">
+                    Edit
+                  </Button>
+                </Link>
                 <SoldAction soldId={item._id} onSuccess={() => refetchData()} />
               </TableCell>
             </TableRow>
