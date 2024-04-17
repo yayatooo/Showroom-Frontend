@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "./ui/Navbar";
 import Footer from "./ui/Footer";
 import QueryProvider from "./provider/QueryProvider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>
           <Navbar />
+          <Toaster richColors  />
           {children}
           <Footer />
         </QueryProvider>

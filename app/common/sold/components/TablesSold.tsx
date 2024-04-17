@@ -58,9 +58,6 @@ export default function TableSold() {
                   soldId={item._id}
                   onSuccess={() => refetchData()}
                 />
-                <Button className="bg-yellow-500 hover:bg-yellow-700">
-                  Edit
-                </Button>
               </TableCell>
             </TableRow>
           );
