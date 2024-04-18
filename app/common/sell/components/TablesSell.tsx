@@ -16,6 +16,7 @@ import { toast, Toaster } from "sonner";
 import { DeleteAction } from "./DeleteAction";
 import { SoldAction } from "./SoldAction";
 import Link from "next/link";
+import { FormatRupiah } from "@arismun/format-rupiah";
 
 export default function TablesSell() {
   const {
@@ -31,6 +32,9 @@ export default function TablesSell() {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
+
+  console.log(data);
+  
 
   // const router = useRouter();
 
@@ -57,10 +61,10 @@ export default function TablesSell() {
             <TableRow key={index}>
               <Toaster richColors />
               <TableCell className="font-medium">{item.policeNumber}</TableCell>
-              <TableCell>Yamaha</TableCell>
+              <TableCell>{item.category.name}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.frameNumber}</TableCell>
-              <TableCell>{item.price.toString()}</TableCell>
+              <TableCell><FormatRupiah value={item.price} /></TableCell>
               <TableCell className="flex gap-3 justify-end">
                 <DeleteAction
                   sellId={item._id}

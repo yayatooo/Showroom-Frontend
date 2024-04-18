@@ -31,12 +31,12 @@ interface FormValues {
 
 export const UpdateSell = ({ data }: { data: DataBike }) => {
   const router = useRouter();
-  // console.log("Data in UpdateSell component:", data);
+  console.log("Data in UpdateSell component:", data);
 
   const initialValues: FormValues = {
     _id: data._id,
     policeNumber: data.policeNumber,
-    categoryBike: data.category,
+    categoryBike: data.category.name,
     capitalPrice: data.capitalPrice,
     name: data.name,
     frameNumber: data.frameNumber,
