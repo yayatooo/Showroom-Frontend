@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,13 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
-import axios from "axios";
 import { SelectOptionCategory } from "@/app/utils/data";
 import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
-// import { postDataSells } from "@/app/service/postDataSells";
+import { useInputProducts } from "@/app/service/useInputProducts";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 interface FormValues {
   capitalPrice: number;
@@ -43,7 +43,7 @@ export default function InputBike() {
     initialValues,
     onSubmit: async () => {
       try {
-        await mutate();
+        await mutate()
         toast.success("Motor Berhasil ditambah");
         formik.resetForm(); // Corrected call to resetForm
       } catch (error) {
@@ -52,11 +52,11 @@ export default function InputBike() {
     },
   });
 
-  const router = useRouter()
+  const router = useRouter();
   const handleBack = (e: any) => {
-    e.preventDefault()
-    router.push("/sell")
-  }
+    e.preventDefault();
+    router.push("/sell");
+  };
 
   const { mutate } = useMutation({
     mutationFn: async () => {
@@ -77,6 +77,31 @@ export default function InputBike() {
     },
   });
 
+  
+  // const { policeNumber, categoryBike, name, frameNumber } = formik.values;
+  // const capitalPrice = formik.values.capitalPrice.toString();
+  // const price = formik.values.price.toString();
+  // const data = {
+  //   name,
+  //   policeNumber,
+  //   categoryBike,
+  //   frameNumber,
+  //   capitalPrice,
+  //   price
+  // }
+  // const { mutate: inputProduct } = useInputProducts({
+  //   data: {
+  //     policeNumber: formik.values.policeNumber,
+  //     category: formik.values.categoryBike,
+  //     name: formik.values.name,
+  //     frameNumber: formik.values.frameNumber,
+  //     capitalPrice: formik.values.capitalPrice.toString(),
+  //     price: formik.values.price.toString(),
+  //   },
+  //   onSuccess: () => {
+  //     toast.success("Data Motor Berhasil Dipindahkan di Sold Stock !");
+  //   },
+  // });
 
   const handleChange = (event: any) => {
     formik.setFieldValue(event.target.name, event.target.value);
@@ -98,7 +123,7 @@ export default function InputBike() {
           onChange={handleChange}
           value={formik.values.policeNumber}
         />
-        {/* <h1>{formik.values.categoryBike}</h1> */}
+        {/* <h1>{formik.values.na}</h1> */}
         <Label htmlFor="text">Category</Label>
         <Select onValueChange={handleSelect}>
           <SelectTrigger className="w-full">

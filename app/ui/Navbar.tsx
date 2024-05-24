@@ -2,6 +2,8 @@ import React from "react";
 import { Logo } from "./Logo";
 import { ProfileMenu } from "./ProfileMenu";
 import { Navlink } from "./Navlink";
+import { Input } from "@/components/ui/input"
+
 
 
 export const Navbar = () => {
@@ -12,7 +14,8 @@ export const Navbar = () => {
         <Logo />
         <Navlink />
       </div>
-      <div>
+      <div className="flex gap-x-6 items-center">
+        <Input type="search" placeholder="Search Bike" className="rounded-xl" />
         <ProfileMenu />
       </div>
     </main>

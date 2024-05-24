@@ -17,6 +17,7 @@ import { DeleteAction } from "./DeleteAction";
 import { SoldAction } from "./SoldAction";
 import Link from "next/link";
 import { FormatRupiah } from "@arismun/format-rupiah";
+import { SkeletonPoliceNumber } from "./SkeletonPoliceNumber";
 
 export default function TablesSell() {
   const {
@@ -34,7 +35,6 @@ export default function TablesSell() {
   if (isError) return <div>Error: {isError}</div>;
 
   console.log(data);
-  
 
   // const router = useRouter();
 
@@ -60,11 +60,15 @@ export default function TablesSell() {
           return (
             <TableRow key={index}>
               <Toaster richColors />
-              <TableCell className="font-medium">{item.policeNumber}</TableCell>
+              <TableCell>
+                {item.policeNumber}
+              </TableCell>
               <TableCell>{item.category.name}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.frameNumber}</TableCell>
-              <TableCell><FormatRupiah value={item.price} /></TableCell>
+              <TableCell>
+                <FormatRupiah value={item.price} />
+              </TableCell>
               <TableCell className="flex gap-3 justify-end">
                 <DeleteAction
                   sellId={item._id}
