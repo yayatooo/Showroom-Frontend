@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "./ui/Navbar";
-import Footer from "./ui/Footer";
 import QueryProvider from "./provider/QueryProvider";
 import { Toaster } from "sonner";
 
@@ -22,10 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
-          <Navbar />
-          <Toaster richColors  />
-          {children}
-          <Footer />
+          <div className="container">
+            <Toaster richColors />
+            {children}
+          </div>
         </QueryProvider>
       </body>
     </html>

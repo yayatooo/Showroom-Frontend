@@ -23,7 +23,6 @@ export default function TablesSell() {
   const {
     data,
     isError,
-    isLoading,
     refetch: refetchData,
   } = useFetchProducts({
     onError: (error) => {
@@ -31,16 +30,12 @@ export default function TablesSell() {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
 
   console.log(data);
 
-  // const router = useRouter();
 
-  // const handleEdit = (id: string) => {
-  //   router.push(`/sell/${id}`);
-  // };
 
   return (
     <Table>
