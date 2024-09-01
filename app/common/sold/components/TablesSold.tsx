@@ -14,6 +14,8 @@ import { DataBike } from "@/app/type/dataBike";
 import { useFetchProductsSold } from "@/app/service/useFetchSold";
 import { toast, Toaster } from "sonner";
 import { DeleteAction } from "./DeleteAction";
+import { FormatRupiah } from "@arismun/format-rupiah";
+import { formatDate } from "@/app/utils/formatDate";
 
 export default function TableSold() {
   const {
@@ -35,6 +37,7 @@ export default function TableSold() {
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
+          <TableHead>Date</TableHead>
           <TableHead>Police Number</TableHead>
           <TableHead>Categorry</TableHead>
           <TableHead>Bike Name</TableHead>
@@ -48,11 +51,12 @@ export default function TableSold() {
           return (
             <TableRow key={index}>
               <Toaster richColors />
+              <TableCell>{formatDate(item.createdAt)}</TableCell>
               <TableCell className="font-medium">{item.policeNumber}</TableCell>
-              <TableCell>Yamaha</TableCell>
+              <TableCell>{item.category.name}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.frameNumber}</TableCell>
-              <TableCell>{item.price.toString()}</TableCell>
+              <TableCell><FormatRupiah value={item.price} /></TableCell>
               <TableCell className="flex gap-3 justify-end">
                 <DeleteAction
                   soldId={item._id}

@@ -18,6 +18,15 @@ import { SoldAction } from "./SoldAction";
 import Link from "next/link";
 import { FormatRupiah } from "@arismun/format-rupiah";
 import { SkeletonPoliceNumber } from "./SkeletonPoliceNumber";
+import { formatDate } from "@/app/utils/formatDate";
+
+// const formatDate = (dateString: string): string => {
+//   const date = new Date(dateString);
+//   const day = date.getDate();
+//   const month = date.toLocaleString('default', { month: 'long' });
+//   const year = date.getFullYear();
+//   return `${day} ${month} ${year}`;
+// };
 
 export default function TablesSell() {
   const {
@@ -42,6 +51,7 @@ export default function TablesSell() {
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
+          <TableHead>Date</TableHead>
           <TableHead>Police Number</TableHead>
           <TableHead>Categorry</TableHead>
           <TableHead>Bike Name</TableHead>
@@ -56,6 +66,9 @@ export default function TablesSell() {
             <TableRow key={index}>
               <Toaster richColors />
               <TableCell>
+              {formatDate(item.createdAt)}
+              </TableCell>
+              <TableCell className="font-medium">
                 {item.policeNumber}
               </TableCell>
               <TableCell>{item.category.name}</TableCell>
